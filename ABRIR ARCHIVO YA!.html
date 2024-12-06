@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Alerta de Sistema!</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: "Courier New", Courier, monospace;
+      text-align: center;
+      margin-top: 15%;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+
+    .important {
+      font-size: 1.5em;
+      color: yellow;
+    }
+
+    .timer {
+      font-size: 3em;
+      color: red;
+      margin-top: 20px;
+    }
+
+    .warning {
+      color: white;
+      font-size: 1em;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Tu sistema ha sido hackeado!</h1>
+  <p>Todos tus archivos han sido <span class="important">encriptados</span>.</p>
+  <p>Para recuperar tus datos, envía 1 Bitcoin a la dirección indicada.</p>
+  <p>El tiempo restante para recuperar tus archivos:</p>
+  <div class="timer" id="countdown">24:00:00</div>
+  <p class="warning">¡No apagues tu computadora o perderás tus datos para siempre!</p>
+
+  <script>
+    // Simulación de una cuenta regresiva de 24 horas
+    function startCountdown(duration, display) {
+      let timer = duration, hours, minutes, seconds;
+      setInterval(function () {
+        hours = Math.floor(timer / 3600);
+        minutes = Math.floor((timer % 3600) / 60);
+        seconds = timer % 60;
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = hours + ":" + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          timer = 0; // Detener cuando llegue a 0
+        }
+      }, 1000);
+    }
+
+    window.onload = function () {
+      const duration = 24 * 60 * 60; // 24 horas en segundos
+      const display = document.getElementById('countdown');
+      startCountdown(duration, display);
+    };
+  </script>
+</body>
+</html>
